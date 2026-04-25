@@ -96,6 +96,8 @@ html,body{margin:0;padding:0;font-family:var(--font);background:var(--bg);color:
 .icon-btn{width:32px;height:32px;border-radius:50%;border:0.5px solid var(--brd2);background:var(--surf);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;flex-shrink:0}
 .icon-btn:hover{background:var(--surf2)}
 .icon-btn svg{width:15px;height:15px;stroke:var(--text2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn.settings-active{background:var(--acc)!important;border-color:var(--acc)!important}
+.icon-btn.settings-active svg{stroke:#fff!important}
 
 /* ── SEARCH ── */
 .search-bar{padding:8px 18px;background:var(--bg);flex-shrink:0;border-bottom:0.5px solid var(--brd)}
@@ -2755,6 +2757,7 @@ function switchTab(tab) {
   // Restore tab-bar and banner (hidden when settings was open)
   document.getElementById('tab-bar') && (document.getElementById('tab-bar').style.display = '');
   document.getElementById('banner-ad-slot') && (document.getElementById('banner-ad-slot').style.display = '');
+  document.getElementById('settings-btn').classList.remove('settings-active');
   const titles = { expenses:'Expenses', summary:'Summary', trends:'Trends' };
   document.getElementById('screen-title').textContent = titles[tab] || (tab.charAt(0).toUpperCase() + tab.slice(1));
   const isExp = tab === 'expenses';
@@ -2794,6 +2797,7 @@ document.getElementById('settings-btn').addEventListener('click', () => {
     document.getElementById('search-bar').style.display  = 'none';
     document.getElementById('tab-bar') && (document.getElementById('tab-bar').style.display = 'none');
     document.getElementById('banner-ad-slot') && (document.getElementById('banner-ad-slot').style.display = 'none');
+    document.getElementById('settings-btn').classList.add('settings-active');
     renderSettings();
     initThemeButtons();
   }
