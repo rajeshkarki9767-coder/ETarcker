@@ -9,10 +9,9 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7563052888132138"
      crossorigin="anonymous"></script>
 <script>
-// Unregister ALL service workers - they cause caching issues on mobile
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    registrations.forEach(function(r) { r.unregister(); });
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
   });
 }
 </script>
